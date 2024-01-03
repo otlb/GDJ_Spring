@@ -45,13 +45,37 @@ public class DepartmentController {
 		return "department/detail";
 	}
 	
+	@RequestMapping(value = "add",method = RequestMethod.GET)
+	public String add() {
+		
+		return "department/add";				
+	}
+	
+	
 	@RequestMapping(value = "add",method = RequestMethod.POST)
 	public String add(HttpServletRequest request)throws Exception{
 		
+		String id = request.getParameter("department_id");
+		String name = request.getParameter("department_name");
+		String manager = request.getParameter("manager_id");
+		String location = request.getParameter("location_id");
 		
-		request.getParameter(null)
+		DepartmentDTO departmentDTO = new DepartmentDTO();
 		
+		departmentDTO.setDepartment_id(Integer.parseInt(id));
+		departmentDTO.setDepartment_name(name);
+		departmentDTO.setManager_id(Integer.parseInt(manager));
+		departmentDTO.setLocation_id(Integer.parseInt(location));
 		
+		int result = departmentDAO.add(departmentDTO);
+		
+		String msg = "등록실패";
+		if(result>0) {
+			msg="등록성공";
+		}
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("path", "./list");
 		
 		return"commons/result";
 	}

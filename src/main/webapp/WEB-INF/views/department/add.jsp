@@ -48,13 +48,21 @@
     	<div class="row mt-4">
 			<form action="add" method="post">
 			  <div class="mb-3">
-			    <label for="departmentId" class="form-label">RegionID</label>
+			    <label for="departmentId" class="form-label">DepartmentID</label>
 			    <input type="text" name="department_id" class="form-control" id="departmentId" aria-describedby="emailHelp">
 			    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
 			  </div>
 			  <div class="mb-3">
-			    <label for="departmentName" class="form-label">RegionName</label>
+			    <label for="departmentName" class="form-label">DepartmentName</label>
 			    <input type="text" name="department_name" class="form-control" id="departmentName">
+			  </div>
+			  <div class="mb-3">
+			    <label for="managerId" class="form-label">ManagerId</label>
+			    <input type="text" name="manager_id" class="form-control" id="managerId">
+			  </div>
+			  <div class="mb-3">
+			    <label for="locationId" class="form-label">LocationId</label>
+			    <input type="text" name="location_id" class="form-control" id="locationId">
 			  </div>
 
 			  <button type="submit" class="btn btn-primary">ADD</button>

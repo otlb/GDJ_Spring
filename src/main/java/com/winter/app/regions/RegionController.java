@@ -6,8 +6,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(value = "/regions/*")
@@ -33,17 +35,18 @@ public class RegionController {
 	
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public String detail(HttpServletRequest request)throws Exception{
-		
+	//파라미터의 이름과 타입을 동일하게 선언
+	public String detail(Integer region_id, Model model)throws Exception{
+		                //@RequestParam() 
 		RegionDAO regionDAO = new RegionDAO();
 		RegionDTO regionDTO = new RegionDTO();
-		String id = request.getParameter("region_id");
+		//String id = request.getParameter("region_id");
 		
-		regionDTO.setRegion_id(Integer.parseInt(id));
+		regionDTO.setRegion_id(region_id);
 		
 		regionDTO = regionDAO.getDetail(regionDTO);
 		
-		request.setAttribute("dto",regionDTO);
+		model.addAttribute("dto",regionDTO);
 		
 		return "regions/detail";
 	} 
@@ -55,14 +58,14 @@ public class RegionController {
 	}
 	
 	@RequestMapping(value = "add",method = RequestMethod.POST)
-	public String add(HttpServletRequest request) throws Exception{
+	public String add(RegionDTO regionDTO, Model model ) throws Exception{
 		
-		String id = request.getParameter("region_id");
-		String name = request.getParameter("region_name");
-		
-		RegionDTO regionDTO = new RegionDTO();
-		regionDTO.setRegion_id(Integer.parseInt(id));
-		regionDTO.setRegion_name(name);
+//		String id = request.getParameter("region_id");
+//		String name = request.getParameter("region_name");
+//		
+//		RegionDTO regionDTO = new RegionDTO();
+//		regionDTO.setRegion_id(Integer.parseInt(id));
+//		regionDTO.setRegion_name(name);
 		
 		int result = this.regionDAO.add(regionDTO);
 		String msg = "등록 실패";
@@ -71,8 +74,10 @@ public class RegionController {
 			msg = "등록 성공";
 			
 		}		
-		request.setAttribute("msg", msg);
-		request.setAttribute("path", "./list");
+//		request.setAttribute("msg", msg);
+//		request.setAttribute("path", "./list");
+		model.addAttribute("msg", msg);
+		model.addAttribute("path",".list");
 		return "commons/result";
 	}
 	
