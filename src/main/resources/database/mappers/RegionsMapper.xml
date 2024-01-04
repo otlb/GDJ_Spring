@@ -20,9 +20,8 @@
 		
 		<!-- add -->
 		
-		<select id="" resultType="com.winter.app.regions.RegionDTO" >
-			INSERT INTO REGIONS VALUES(#{region_id},#{region_name})	
-		
+		<select id="add" resultType="com.winter.app.regions.RegionDTO" >
+			INSERT INTO REGIONS VALUES(#{region_id},#{region_name})		
 		</select>
 		
 		

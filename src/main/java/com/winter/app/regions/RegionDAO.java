@@ -53,6 +53,7 @@ public class RegionDAO {
 		
 		DBConnector.disConnect(st, con);
 		return result;
+		//sqlSession;
 		
 	}
 		
