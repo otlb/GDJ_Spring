@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.winter.app.util.DBConnector;
@@ -16,60 +18,25 @@ import oracle.jdbc.driver.DBConversion;
 @Repository
 public class RegionDAO {
 	
+	@Autowired
+	private SqlSession sqlSession;
+	private final String namespace = "com.winter.app.regions.RegionDAO.";
+	
+	
 	public List<RegionDTO> getList() throws Exception {
-		
-		
-		//1. driver를 메모리에 로딩(객체 생성)
-		Connection con = DBConnector.getConnector();
-			
-			//3. SQL문 생성
-			String sql = "SELECT * FROM REGIONS";
-			//4.SQL문을 미리전송
-			PreparedStatement st = con.prepareStatement(sql);
-			//5.
-			
-			//6.최종전송 및 결과처리
-			ResultSet rs = st.executeQuery();	
-			List<RegionDTO> ar = new ArrayList<RegionDTO>();
-			while(rs.next()) {
-				//첫번째 rs= 1,Europe
-				RegionDTO dto = new RegionDTO();
-				
-				dto.setRegion_id(rs.getInt("REGION_ID"));
-				
-				dto.setRegion_name(rs.getString("REGION_NAME"));
-				
-				ar.add(dto);
-			}
-			//연결 끊어주기
-			DBConnector.disConnect(rs, st, con);
-			return ar;
+									
+			return sqlSession.selectList(namespace+"getList");
 		
 			
 		
 	}
 	//검색 
 	public RegionDTO getDetail(RegionDTO regionDTO)throws Exception {
+			
+			// 하나의 결과만 가지고 오기때문에 selectOne 사용 
+			return	sqlSession.selectOne(namespace+"getDetail",regionDTO);	
+				
 		
-		Connection con = DBConnector.getConnector();
-		
-		String sql = "SELECT * FROM REGIONS WHERE REGION_ID =?";
-		
-		PreparedStatement st = con.prepareStatement(sql);
-		
-		st.setInt(1,regionDTO.getRegion_id());
-		
-		ResultSet rs = st.executeQuery();
-		
-		RegionDTO resultDTO = null; 
-		
-		if(rs.next()) {
-			resultDTO = new RegionDTO();
-			resultDTO.setRegion_id(rs.getInt("REGION_ID"));
-			resultDTO.setRegion_name(rs.getString("REGION_NAME"));
-		}
-		DBConnector.disConnect(rs, st, con);
-		return resultDTO;
 	}
 	
 	//추가(INSERT)
