@@ -7,10 +7,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.winter.app.util.DBConnector;
 
 import oracle.jdbc.driver.DBConversion;
 
+@Repository
 public class RegionDAO {
 	
 	public List<RegionDTO> getList() throws Exception {
