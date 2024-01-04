@@ -1,5 +1,7 @@
 package com.winter.app.ioc;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class RobotMain {
 
 	public static void main(String[] args) {
@@ -20,6 +22,7 @@ public class RobotMain {
 		
 		
 		Robot robot = new Robot();
+		Robot robot2 = new Robot(null, null);
 		robot.getLeftArm().act();
 	}
 

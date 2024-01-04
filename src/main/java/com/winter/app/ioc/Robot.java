@@ -3,22 +3,22 @@ package com.winter.app.ioc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class Robot {
 	
 	//팔 왼쪽, 오른쪽 has a 가지고있다 가 더 잘어울리기떄문에 멤버 변수로 
-	@Autowired
+	
 	private LeftArm leftArm;
 	
-	@Autowired
+	
 	private RightArm rightArm;
 	
 	
-	
+
 	public Robot() {		
-		//this.leftArm = new LeftArm();
-		//this.rightArm = new RightArm();
-		
+//		//this.leftArm = new LeftArm();
+//		//this.rightArm = new RightArm();
+//		
 	}
 	
 	public Robot(LeftArm leftArm, RightArm rightArm) {
