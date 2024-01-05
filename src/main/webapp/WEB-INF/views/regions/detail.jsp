@@ -32,9 +32,16 @@
     	<c:if test="${empty dto}">
     			<h3>없는 번호 입니다.</h3>
     		</c:if>
-    	
+    	    
+			<button id="up" data-region-id="${dto.region_id}">UPDATE</button>
+    		
+    		<button id="del">DELETE</button>
+    		<form action="./delete" id="frm" method="post">
+    			<input type="hidden" name="region_id" value="${dto.region_id}">
+    		</form>
     </section>
 
  	<c:import url="../temps/bootStrap_js.jsp"></c:import>
+	<script src="../resources/js/java.js"></script>
 </body>
 </html>

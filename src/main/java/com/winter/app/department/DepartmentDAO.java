@@ -19,13 +19,13 @@ public class DepartmentDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private final String names = "com.winter.app.department.DepartmentDAO.";
+	private final String namespace = "com.winter.app.department.DepartmentDAO.";
 	
 	//전체조회
 	
 	public List<DepartmentDTO> getList() throws Exception {
 					
-			return sqlSession.selectList(names+"getList");
+			return sqlSession.selectList(namespace+"getList");
 			
 	}
 	
@@ -33,42 +33,28 @@ public class DepartmentDAO {
 	
 	public DepartmentDTO getDetail(DepartmentDTO departmentDTO) throws Exception {
 		
-		return sqlSession.selectOne(names+"getDetail", departmentDTO);
+		return sqlSession.selectOne(namespace+"getDetail", departmentDTO);
 		
 	}
 	
-//	public int add(DepartmentDTO departmentDTO) throws Exception {
-//		Connection con = DBConnector.getConnector();
-//		String sql = "INSERT INTO DEPARTMENTS VALUES(?,?,?,?)";
-//		PreparedStatement st = con.prepareStatement(sql);
-//		
-//		st.setInt(1, departmentDTO.getDepartment_id());
-//		st.setString(2,departmentDTO.getDepartment_name());
-//		st.setInt(3,departmentDTO.getManager_id());
-//		st.setInt(4, departmentDTO.getLocation_id());
-//		
-//		int result = st.executeUpdate();
-//		
-//		DBConnector.disConnect(st, con);
-//		return result;
-//		
-//	}
-//	
-//	public int update(DepartmentDTO departmentDTO) throws Exception {
-//		Connection con = DBConnector.getConnector();
-//		String spl = "UPDATE DEPARTMENTS SET DEPARTMENT_NAME = ? WHERE DEPARTMENT_ID =?";
-//		PreparedStatement st = con.prepareStatement(spl);
-//		
-//		st.setString(1,departmentDTO.getDepartment_name());
-//		st.setInt(2,departmentDTO.getDepartment_id());
-//		
-//		int result = st.executeUpdate();
-//		DBConnector.disConnect(st, con);
-//		
-//		return result;
-//		
-//	}
+	public int add(DepartmentDTO departmentDTO) throws Exception {
+				
+		return sqlSession.insert(namespace+"add", departmentDTO);
+
+		
+	}
 	
+	public int update(DepartmentDTO departmentDTO) throws Exception {
+		
+		
+		return sqlSession.update(namespace+"update", departmentDTO);
+		
+	}
+	
+	public int delete(DepartmentDTO departmentDTO) throws Exception{
+		
+		return sqlSession.delete(namespace+"delete", departmentDTO);
+	}
 	
 	
 }

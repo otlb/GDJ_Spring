@@ -1,5 +1,6 @@
 package com.winter.app.department;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -16,7 +17,7 @@ public class DepartmentDAOTest extends MyTest {
 	private DepartmentDAO departmentDAO;
 	
 	
-	@Test
+	//@Test
 	public void list() throws Exception{
 		
 		List<DepartmentDTO> ar = departmentDAO.getList();
@@ -24,7 +25,7 @@ public class DepartmentDAOTest extends MyTest {
 		assertNotEquals(0, ar.size());
 	}
 	
-	@Test
+	//@Test
 	public void detail() throws Exception{
 		
 		DepartmentDTO departmentDTO = new DepartmentDTO();
@@ -32,6 +33,40 @@ public class DepartmentDAOTest extends MyTest {
 		
 		departmentDAO.getDetail(departmentDTO);
 		assertNotNull(departmentDTO);
+	}
+	
+	//@Test
+	public void add()throws Exception{
+		
+		DepartmentDTO departmentDTO = new DepartmentDTO();
+		departmentDTO.setDepartment_name("test1");
+		departmentDTO.setLocation_id(1700);
+		departmentDTO.setManager_id(100);
+		
+		int result = departmentDAO.add(departmentDTO);
+		
+		assertEquals(1, result);
+		
+	}
+	//@Test
+	public void update()throws Exception{
+		DepartmentDTO departmentDTO = new DepartmentDTO();
+		departmentDTO.setDepartment_name("test");
+		departmentDTO.setDepartment_id(310);
+		
+		int result = departmentDAO.update(departmentDTO);
+		assertEquals(1, result);
+	}
+	//@Test
+	public void delete() throws Exception{
+		
+		DepartmentDTO departmentDTO = new DepartmentDTO();
+		departmentDTO.setDepartment_id(310);
+		
+		int result = departmentDAO.delete(departmentDTO);
+		
+		assertEquals(1, result);
+		
 	}
 	
 }

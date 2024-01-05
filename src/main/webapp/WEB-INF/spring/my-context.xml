@@ -7,7 +7,7 @@
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
 		<property name="username" value="user01"></property>
 		<property name="password" value="user01"></property>
-		<property name="url" value="jdbc:oracle:thin:@3.39.190.102:1521:xe"></property>
+		<property name="url" value="jdbc:oracle:thin:@54.180.80.75:1521:xe"></property>
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
 	</bean>
 	
@@ -15,6 +15,7 @@
 	<!-- Connection, sql문이 있는 xml파일의 위치, config 파일의 위치를 알려줌  -->
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:database/config/MyBatisConfig.xml"></property>
 		<property name="mapperLocations" value="classpath:database/mappers/*Mapper.xml"></property>
 		
 	</bean>

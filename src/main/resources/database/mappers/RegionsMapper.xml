@@ -9,23 +9,29 @@
 	<mapper namespace="com.winter.app.regions.RegionDAO">
 		<!-- detail  -->
 		<!-- id는 DAO의 메서드명 -->
-		<select id="getDetail" resultType="com.winter.app.regions.RegionDTO" parameterType="com.winter.app.regions.RegionDTO">
+		<select id="getDetail" resultType="RegionDTO" parameterType="RegionDTO">
 			SELECT * FROM REGIONS WHERE REGION_ID=#{region_id} 
 		</select>
 		
 		<!-- list -->
-		<select id="getList" resultType="com.winter.app.regions.RegionDTO" >
+		<select id="getList" resultType="RegionDTO" >
 			SELECT * FROM REGIONS 
 		</select>
 		
-		<!-- add -->
+		<!-- add -->		
+		<insert id="add" parameterType="RegionDTO" >
+			INSERT INTO REGIONS VALUES(EMPLOYEES_SEQ.NEXTVAL,#{region_name})		
+		</insert>
 		
-		<select id="add" resultType="com.winter.app.regions.RegionDTO" >
-			INSERT INTO REGIONS VALUES(#{region_id},#{region_name})		
-		</select>
+		<!-- update -->
+		<update id="update" parameterType="RegionDTO" >
+			UPDATE REGIONS SET REGION_NAME=#{region_name} WHERE REGION_ID=#{region_id}
+		</update>
 		
-		
-		
+		<!-- delete -->
+		<delete id="delete" parameterType="RegionDTO"> 
+			DELETE REGIONS WHERE REGION_ID = #{region_id}
+		</delete>
 		
 		
 		

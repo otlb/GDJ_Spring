@@ -18,12 +18,22 @@ public class DepartmentService {
 		return ar;
 	}
 	
-//	public void getDitali() {
-//		
-//		DepartmentDTO departmentDTO = new DepartmentDTO();
-//		
-//		departmentDTO.getDepartment_id();
-//		
-//	}
+	public DepartmentDTO getDetail(DepartmentDTO departmentDTO) throws Exception{
+		
+		return departmentDAO.getDetail(departmentDTO);
+	}
+	
+	public int add (DepartmentDTO departmentDTO) throws Exception{
+		
+		return departmentDAO.add(departmentDTO);
+	}
+	
+	public int update(DepartmentDTO departmentDTO) throws Exception{
+		return departmentDAO.update(departmentDTO);
+	}
+	
+	public int delete(DepartmentDTO departmentDTO) throws Exception{
+		return departmentDAO.delete(departmentDTO);
+	}
 	
 }
