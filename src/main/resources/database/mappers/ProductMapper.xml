@@ -8,6 +8,10 @@
   		<select id="list" resultType="ProductDTO">
   			SELECT * FROM PRODUCT
   		</select>
+  		
+  		<select id="detail" resultType="ProductDTO" parameterType="ProductDTO">
+  			SELECT * FROM PRODUCT WHERE PRODUCTNUM = ${froductNnm}
+  		</select>
   
   
   

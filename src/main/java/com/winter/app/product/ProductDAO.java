@@ -24,10 +24,15 @@ public class ProductDAO {
 	public List<ProductDTO> list() throws Exception {
 							
 			return sqlSession.selectList(namespace+"list");
-					
-	
 			
 	}
+	
+	public ProductDTO detail(ProductDTO productDTO) throws Exception{
+		
+				return sqlSession.selectOne(namespace+"detail", productDTO);
+	}
+	
+	
 	
 //	//등록
 //	public int add(ProductDTO productDTO) {
