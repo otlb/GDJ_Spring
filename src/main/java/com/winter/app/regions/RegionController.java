@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.winter.app.util.Pager;
+
 @Controller
 @RequestMapping(value = "/regions/*")
 public class RegionController {
@@ -22,9 +24,9 @@ public class RegionController {
 	
 	
 	@RequestMapping(value = "list",method = RequestMethod.GET)
-	public String list(HttpServletRequest request) throws Exception {
+	public String list(HttpServletRequest request,Pager pager) throws Exception {
 						
-		List<RegionDTO> ar = regionService.getList();
+		List<RegionDTO> ar = regionService.getList(pager);
 		
 		request.setAttribute("list", ar);
 		

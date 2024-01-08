@@ -11,7 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.winter.app.util.DBConnector;
+import com.winter.app.util.Pager;
 
 import oracle.jdbc.driver.DBConversion;
 
@@ -23,9 +23,9 @@ public class RegionDAO {
 	private final String namespace = "com.winter.app.regions.RegionDAO.";
 	
 	
-	public List<RegionDTO> getList() throws Exception {
+	public List<RegionDTO> getList(Pager pager) throws Exception {
 									
-			return sqlSession.selectList(namespace+"getList");
+			return sqlSession.selectList(namespace+"getList",pager);
 		
 			
 		

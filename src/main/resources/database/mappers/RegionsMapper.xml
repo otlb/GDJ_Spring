@@ -14,8 +14,16 @@
 		</select>
 		
 		<!-- list -->
-		<select id="getList" resultType="RegionDTO" >
-			SELECT * FROM REGIONS 
+		<select id="getList" resultType="RegionDTO" parameterType="Pager">
+			SELECT * FROM 
+			(
+				SELECT ROWNUM R,RG.*FROM 
+					( 	
+						SELECT * FROM REGIONS 
+						ORDER BY REGION_ID DESC
+					 )RG
+			)
+			WHERE R BETWEEN #{startRow} AND #{lastRow}
 		</select>
 		
 		<!-- add -->		
@@ -32,6 +40,7 @@
 		<delete id="delete" parameterType="RegionDTO"> 
 			DELETE REGIONS WHERE REGION_ID = #{region_id}
 		</delete>
+		
 		
 		
 		
