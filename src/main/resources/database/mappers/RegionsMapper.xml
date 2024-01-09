@@ -25,17 +25,17 @@
 		</sql>
 		
 		<sql id="search2">
-			WHERE 
-			<if test="kind=='kind1'">
+			<where>
+			<if test="kind=='kind1' or kind=='kind4'">
 			TITLE LIKE '%'||#{search}||'%'			
 			</if>
-			<if test="kind=='kind2'">
-			CONTENTS LIKE '%'||#{search}||'%'
+			<if test="kind=='kind2' or kind=='kind4'">
+			OR CONTENTS LIKE '%'||#{search}||'%'
 			</if>
-			<if test="kind=='kind3'">
-			WRITER LIKE '%'||#{search}||'%'
+			<if test="kind=='kind3' or kind=='kind4'">
+			OR WRITER LIKE '%'||#{search}||'%'
 			</if>
-			
+			</where> 
 			
 			
 		</sql>
