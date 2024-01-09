@@ -24,11 +24,13 @@ public class RegionController {
 	
 	
 	@RequestMapping(value = "list",method = RequestMethod.GET)
-	public String list(HttpServletRequest request,Pager pager) throws Exception {
+	public String list(Model model,Pager pager) throws Exception {
 						
 		List<RegionDTO> ar = regionService.getList(pager);
 		
-		request.setAttribute("list", ar);
+		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
+		
 		
 		return "regions/list";
 				

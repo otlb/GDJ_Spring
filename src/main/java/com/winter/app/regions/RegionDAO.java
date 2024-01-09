@@ -22,9 +22,14 @@ public class RegionDAO {
 	private SqlSession sqlSession;
 	private final String namespace = "com.winter.app.regions.RegionDAO.";
 	
+	public Long getTotal(Pager pager)throws Exception {
+		 	return sqlSession.selectOne(namespace+"getTotal",pager);
+		
+	}
+	
 	
 	public List<RegionDTO> getList(Pager pager) throws Exception {
-									
+			System.out.println(pager.getLastRow());						
 			return sqlSession.selectList(namespace+"getList",pager);
 		
 			

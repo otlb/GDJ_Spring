@@ -7,10 +7,54 @@
 	<!-- mapper namespace는 비우면 에러  -->
 	<!-- 해당 mapper를 사용할 DAO의 풀패키지명으로 작성 -->
 	<mapper namespace="com.winter.app.regions.RegionDAO">
+		
+		<sql id="search3">
+			WHERE 
+			<choose>
+				<when test="kind=='kind1'">
+					TITLE LIKE '%'||#{search}||'%'
+				</when>
+				<when test="kind=='kind2">
+					CONTENTS LIKE '%'||#{search}||'%'
+				</when>	
+				<otherwise>
+					WRITER LIKE '%'||#{search}||'%'
+				</otherwise>					
+			</choose>			
+			
+		</sql>
+		
+		<sql id="search2">
+			WHERE 
+			<if test="kind=='kind1'">
+			TITLE LIKE '%'||#{search}||'%'			
+			</if>
+			<if test="kind=='kind2'">
+			CONTENTS LIKE '%'||#{search}||'%'
+			</if>
+			<if test="kind=='kind3'">
+			WRITER LIKE '%'||#{search}||'%'
+			</if>
+			
+			
+			
+		</sql>
+		
+		
+		<sql id="search">
+			WHERE REGION_NAME LIKE '%'||#{search}||'%'
+		</sql>		
+	
 		<!-- detail  -->
 		<!-- id는 DAO의 메서드명 -->
 		<select id="getDetail" resultType="RegionDTO" parameterType="RegionDTO">
 			SELECT * FROM REGIONS WHERE REGION_ID=#{region_id} 
+		</select>
+		
+		<!-- getTotal -->
+		<select id="getTotal" resultType="Long" parameterType="Pager">
+			SELECT COUNT(REGION_ID) FROM REGIONS
+			<include refid="search"></include>
 		</select>
 		
 		<!-- list -->
@@ -19,7 +63,8 @@
 			(
 				SELECT ROWNUM R,RG.*FROM 
 					( 	
-						SELECT * FROM REGIONS 
+						SELECT * FROM REGIONS
+						<include refid="search"></include>						
 						ORDER BY REGION_ID DESC
 					 )RG
 			)
@@ -40,6 +85,7 @@
 		<delete id="delete" parameterType="RegionDTO"> 
 			DELETE REGIONS WHERE REGION_ID = #{region_id}
 		</delete>
+		
 		
 		
 		
