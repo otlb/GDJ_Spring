@@ -25,6 +25,7 @@
 		</sql>
 		
 		<sql id="search2">
+			<!-- 태그 where 1번이 float 2번이 true 일때 앞에 or을 알아서 지워줌  -->
 			<where>
 			<if test="kind=='kind1' or kind=='kind4'">
 			TITLE LIKE '%'||#{search}||'%'			
