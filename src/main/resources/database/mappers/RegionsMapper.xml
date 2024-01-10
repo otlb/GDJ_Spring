@@ -72,6 +72,12 @@
 			WHERE R BETWEEN #{startRow} AND #{lastRow}
 		</select>
 		
+		<insert id="addFile" parameterType="RegionFileDTO">
+			INSERT INTO REGIONFILES
+			VALUES(FILE_SEQ.NEXTVAL,#{region_id},#{fileName},#{oriName})
+		</insert>
+		
+		
 		<!-- add -->		
 		<insert id="add" parameterType="RegionDTO" >
 			INSERT INTO REGIONS VALUES(EMPLOYEES_SEQ.NEXTVAL,#{region_name})		

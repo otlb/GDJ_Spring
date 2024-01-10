@@ -43,6 +43,13 @@ public class RegionDAO {
 					
 	}
 	
+	public int addFile(RegionFileDTO regionFileDTO)throws Exception{
+		
+			return sqlSession.insert(namespace+"addFile", regionFileDTO);
+	}
+	
+	
+	
 	//추가(INSERT)
 	public int add(RegionDTO regionDTO) throws Exception {
 	
