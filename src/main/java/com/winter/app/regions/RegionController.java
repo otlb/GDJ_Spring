@@ -41,7 +41,7 @@ public class RegionController {
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
 	//파라미터의 이름과 타입을 동일하게 선언
-	public String detail(Integer region_id, Model model)throws Exception{
+	public String detail(Long region_id, Model model)throws Exception{
 		                //@RequestParam() 
 		
 		RegionDTO regionDTO = new RegionDTO();

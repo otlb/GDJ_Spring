@@ -50,6 +50,9 @@ public class RegionService {
 	//add
 	public int add(RegionDTO regionDTO,MultipartFile file) throws Exception{
 		
+		int result = regionDAO.add(regionDTO); // 추가하는게 먼저 실행되야지 region_id가 있다 아니면 없어서 오류
+		
+		
 		//1. 어디에 저장할것인가??
 		String path =servletContext.getRealPath("/resources/upload");
 		System.out.println(path);
@@ -76,9 +79,10 @@ public class RegionService {
 		RegionFileDTO regionFileDTO = new RegionFileDTO();
 		regionFileDTO.setFileName(fileName);
 		regionFileDTO.setOriName(file.getOriginalFilename());
+		regionFileDTO.setRegion_id(regionDTO.getRegion_id());
 		regionDAO.addFile(regionFileDTO);
 		
-		return 0; //regionDAO.add(regionDTO);
+		return result;
 	}
 	
 	//update
