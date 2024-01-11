@@ -90,12 +90,13 @@ public class RegionService {
 		//DB에서 삭제
 		int result = regionDAO.delete(regionDTO);
 		//경로 생성
-		String path = servletContext.getRealPath("/resources/upload/regions/");		
+		String path = servletContext.getRealPath("/resources/upload/regions/");	
+		
 		for(RegionFileDTO f:ar) {
-			path = path + f.getFileName();
+			
+			//HDD에서 삭제 
+			fileManager.fileDelete(path,f.getFileName());
 		}
-		//HDD에서 삭제 
-		fileManager.fileDelete(path);
 		return result;
 		
 	}

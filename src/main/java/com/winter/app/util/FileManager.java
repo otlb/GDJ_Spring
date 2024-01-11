@@ -15,8 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileManager {
 	
 	//파일삭제
-	public boolean fileDelete(String path) throws Exception{
-		File file = new File(path);		
+	public boolean fileDelete(String path,String fileName) throws Exception{
+		File file = new File(path,fileName);	
+		
 		return file.delete();
 				
 	}
