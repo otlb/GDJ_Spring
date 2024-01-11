@@ -22,9 +22,14 @@ public class RegionDAO {
 	private SqlSession sqlSession;
 	private final String namespace = "com.winter.app.regions.RegionDAO.";
 	
-	public Long getTotal(Pager pager)throws Exception {
-		 	return sqlSession.selectOne(namespace+"getTotal",pager);
+	//파일 리스트(1:N) 조회
+	public List<RegionFileDTO> getListFiles(RegionDTO regionDTO)throws Exception{
+		return sqlSession.selectList(namespace+"getListFiles", regionDTO);
+	}
 		
+	
+	public Long getTotal(Pager pager)throws Exception {
+		 	return sqlSession.selectOne(namespace+"getTotal",pager);		
 	}
 	
 	

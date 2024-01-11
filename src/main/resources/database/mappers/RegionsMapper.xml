@@ -78,6 +78,12 @@
 			
 		</resultMap>
 		
+		<!-- File List 1:N 조회하기 -->
+		<select id="getListFiles" resultType="RegionFileDTO" parameterType="RegionDTO">
+			SELECT * FROM REGIONFILES
+			WHERE REGION_ID = #{region_id}
+		</select>
+		
 		
 		
 		<!-- getTotal -->
