@@ -1,5 +1,7 @@
 package com.winter.app.regions;
 
+import java.util.List;
+
 public class RegionDTO {
 	
 	//1. 모든 멤버변수의 접근지정자는 private
@@ -9,7 +11,16 @@ public class RegionDTO {
 	
 	private Long region_id;
 	private String region_name;
+	private	List<RegionFileDTO> regionFileDTOs;
 	
+	
+	
+	public List<RegionFileDTO> getRegionFileDTOs() {
+		return regionFileDTOs;
+	}
+	public void setRegionFileDTOs(List<RegionFileDTO> regionFileDTOs) {
+		this.regionFileDTOs = regionFileDTOs;
+	}
 	public Long getRegion_id() {
 		return region_id;
 	}

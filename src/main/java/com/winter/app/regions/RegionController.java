@@ -65,7 +65,7 @@ public class RegionController {
 	}
 	
 	@RequestMapping(value = "add",method = RequestMethod.POST)
-	public String add(RegionDTO regionDTO, Model model, MultipartFile photo ) throws Exception{
+	public String add(RegionDTO regionDTO, Model model, MultipartFile [] photo ) throws Exception{
 		
 //		String id = request.getParameter("region_id");
 //		String name = request.getParameter("region_name");

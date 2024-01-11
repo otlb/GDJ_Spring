@@ -70,6 +70,8 @@
 			  
 				<div class="mb-3">
 					<input type="file" name="photo">
+					<input type="file" name="photo">
+					<input type="file" name="photo">
 		
 				</div>
 				

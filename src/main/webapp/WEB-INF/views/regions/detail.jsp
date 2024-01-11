@@ -20,11 +20,15 @@
     			<tr>
     				<th>ID</th>
     				<th>NAME</th>
+    				<th>FILE</th>
     			</tr>
     		</thead>
     		<tr>
     			<td>${dto.region_id}</td>
     			<td>${dto.region_name}</td>
+    			<c:forEach items="${dto.regionFileDTOs}" var="f">
+    			<td><a href="/resources/upload/regions/${f.fileName}">${f.oriName}</a></td>
+    			</c:forEach>
     		</tr>
     	</table>
     	</c:if>
